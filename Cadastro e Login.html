@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Django carregando arquivos estáticos -->
+    {% load static %}
+
+    <!-- Link correto para o CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Tela de Login</title>
+</head>
+<body>
+    <img src="icon.webp" alt="Ícone Fazenda">
+    <form class="login" action="/login" method="POST"> <!-- Incluído método POST -->
+        {% csrf_token %}
+        <h2>LOGIN</h2>
+        <div class="box-user">
+            <input type="text" name="username" required> <!-- Definido o name -->
+            <label>Usuário</label>
+        </div>
+        <div class="box-user">
+            <input type="password" name="password" required> <!-- Definido o name -->
+            <label>Senha</label>
+        </div>
+        <div>
+            <a href="{% url 'home' %}" class="forget"> Voltar para cadastro</a>
+        </div>
+        <form method="POST" action="/login/">
+            {% csrf_token %}
+            <!-- Outros campos do formulário -->
+            <button type="submit" class="btn">Login</button>
+        </form>         
+    </form>
+</body>
+</html>
